@@ -1,0 +1,20 @@
+describe('System test', () => {
+  it('login - sucess', () => {
+    cy.visit('https://staging.d2pnv8jp5au9a7.amplifyapp.com')
+    cy.get('.card-title')
+    cy.get('.card-body')
+    cy.get('[data-test="email"]').type('admin@teste.com')
+    cy.get('[data-test="password"]').type('123456')
+    cy.get('[data-test="submit"]').click()
+    cy.get(':nth-child(2) > .bg-body-tertiary > h3')
+  })
+  it('login - Fail', () => {
+    cy.visit('https://staging.d2pnv8jp5au9a7.amplifyapp.com')
+    cy.get('.card-title')
+    cy.get('.card-body')
+    cy.get('[data-test="email"]').type('Admin@teste.com')
+    cy.get('[data-test="password"]').type('123456789')
+    cy.get('[data-test="submit"]').click()
+    cy.get('#login-error')
+  })
+})
